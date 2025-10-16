@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+/* ----- CSS Reset & Global Settings ----- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ----- Page Setup ----- */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+* {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.outfit-500{
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+.complete-style{
+  display: inline-block;
+  animation: yes 4s infinite;
+  transform-origin: center center;
+  text-shadow: 0.3rem 0.3rem black;
+}
+
+.cta-animation{
+  display: inline-block;
+  animation: yes 4s infinite;
+  transform-origin: center center;
+}
+
+@keyframes yes {
+  0%, 100% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(20%) rotateX(-25deg);
+  }
+  75% {
+    transform: translateY(10%) rotateY(25deg);
+  }
+}

@@ -1,0 +1,97 @@
+# ------------------------------
+# General
+# ------------------------------
+node_modules/
+dist/
+build/
+coverage/
+temp/
+tmp/
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.orig
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ------------------------------
+# TypeScript
+# ------------------------------
+*.tsbuildinfo
+
+# ------------------------------
+# React
+# ------------------------------
+# Production build output
+*.cache/
+.cache-loader/
+.next/
+out/
+storybook-static/
+.vite/
+
+# Testing
+jest-cache/
+jest-test-results.json
+
+# ------------------------------
+# Visual Studio / .NET
+# ------------------------------
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]uild[Ll]og.*
+
+## Visual Studio cache/options directory
+.vs/
+.vscode/
+
+# Tye/Service Fabric
+.tye/
+
+# Rider and VS Code
+.idea/
+*.iml
+
+# ------------------------------
+# Miscellaneous
+# ------------------------------
+# Package managers
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ------------------------------
+# Optional: include lockfiles if you want consistent builds
+# Uncomment ONE if you want to commit it
+# !package-lock.json
+# !yarn.lock
+# !pnpm-lock.yaml
