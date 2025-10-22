@@ -41,5 +41,6 @@ Multiplayer spin-the-wheel with mobile view (controller) and desktop view (prese
 - run project
 
   ```pwsh
+  cd client
   npm run dev
   ```
