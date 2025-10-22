@@ -20,16 +20,13 @@ export default function CountdownCircle({
     let start: number | null = null;
     let animationId: number;
 
-    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
-
     const step = (timestamp: number) => {
       if (!start) start = timestamp;
       const delta = timestamp - start;
       const seconds = delta / 1000;
 
       const t = Math.min(seconds / duration, 1);
-      const eased = easeOutCubic(t);
-      setElapsed(eased * duration);
+      setElapsed(t * duration);
       setElapsedLinear(Math.max(duration - Math.ceil(seconds), 0));
 
       if (seconds < duration) {

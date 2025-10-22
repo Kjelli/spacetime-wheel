@@ -95,6 +95,7 @@ export default function MainScreen() {
   };
 
   function removeFromQueue(queue: Queue): void {
+    if (!queue?.userIdentity) return;
     conn.reducers.removeUserFromQueue(queue.userIdentity);
   }
 

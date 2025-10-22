@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type { Action, Queue, User } from "../../module_bindings";
+import { NameView } from "./NameView";
 
 type PlayerViewProps = {
   player?: User;
@@ -7,7 +8,7 @@ type PlayerViewProps = {
   queue: Queue[];
 
   onSpinClicked?: () => void;
-  setPlayerName?: (name: string) => void;
+  setPlayerName: (name: string) => void;
 
   onAddAction?: (action: string) => void;
   onRemoveAction?: (action: Action) => void;
@@ -27,7 +28,6 @@ export default function PlayerView({
   const [localName, setLocalName] = useState(player?.name);
   const [newAction, setNewAction] = useState("");
 
-  const [isChangingName, setIsChangingName] = useState(false);
   const [isEditingActions, setIsEditingActions] = useState(false);
   const [queuePosition, setQueuePosition] = useState(-1);
 
@@ -39,12 +39,6 @@ export default function PlayerView({
     );
   }, [player, queue]);
 
-  const selectInput = () => {
-    if (inputRef.current) {
-      inputRef.current.select();
-    }
-  };
-
   useEffect(() => {
     if (player?.name) {
       setLocalName(player?.name);
@@ -52,46 +46,6 @@ export default function PlayerView({
   }, [player]);
 
   // If player has no name yet, show input to set it
-  if (!localName || isChangingName) {
-    return (
-      <div className="p-4 min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-black to-purple-900 gap-6 overflow-auto">
-        <h1 className="text-3xl font-extrabold text-white mb-4 drop-shadow-lg">
-          Skriv inn navn
-        </h1>
-
-        <form
-          className="w-full max-w-sm flex flex-col gap-8"
-          onSubmit={(e) => {
-            e.preventDefault();
-            if (localName?.trim() && setPlayerName) {
-              setIsChangingName(false);
-              setPlayerName(localName.trim());
-            }
-          }}
-        >
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Navn"
-            value={localName}
-            onChange={(e) => setLocalName(e.target.value)}
-            maxLength={16}
-            onFocus={(e) => {
-              inputRef.current?.select();
-              e.target.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="text-3xl text-white h-16 w-full p-2 rounded-md border border-gray-700 bg-gray-900 placeholder-gray-600"
-          />
-          <button
-            type="submit"
-            className="text-3xl text-white h-16 w-full bg-purple-900 font-bold py-3 rounded-xl"
-          >
-            Lagre
-          </button>
-        </form>
-      </div>
-    );
-  }
 
   // VIP -> Admin editing
   if (isEditingActions) {
@@ -162,22 +116,10 @@ export default function PlayerView({
 
   // Otherwise, show Spin button
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-black to-purple-900 gap-12 overflow-hidden">
-      <h1 className="text-4xl text-white outfit-500 font-extrabold drop-shadow-lg text-center">
-        {localName}
-      </h1>
+    <div className="min-h-screen text-white text-3xl text-center flex flex-col justify-center items-center bg-gradient-to-br from-black to-purple-900 gap-12 overflow-hidden">
+      <NameView changeName={setPlayerName} name={localName} />
       {queuePosition === -1 && (
         <>
-          <button
-            className="text-3xl text-white h-16 w-full max-w-sm bg-purple-950  font-bold py-3 rounded-xl"
-            onClick={() => {
-              setIsChangingName(true);
-              selectInput();
-            }}
-          >
-            Bytt navn
-          </button>
-
           {player?.isVip && (
             <div className="flex w-full justify-center items-center">
               <button
